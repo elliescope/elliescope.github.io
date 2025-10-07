@@ -283,6 +283,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  jekyll-remote-theme (~> 0.4.3)
   jekyll-theme-so-simple
 
 BUNDLED WITH
