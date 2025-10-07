@@ -1,0 +1,9 @@
+# Sample Authors
+# Remove file or replace with your own
+
+author:
+  name: "Ellie"
+  bio: "A young nature observer sharing birding adventures, photos, and art."
+  location: "Nature Explorer"
+  email: ""
+  avatar: ""   # optional profile photo path (e.g., /images/avatar.jpg)

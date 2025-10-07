@@ -1,0 +1,14 @@
+- title: "Home"
+  url: /
+
+- title: "Birding"
+  url: /checklist/
+
+- title: "Photography"
+  url: /photography/
+
+- title: "Nature Notes"
+  url: /notes/
+
+- title: "My Art"
+  url: /art/
