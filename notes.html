@@ -5,103 +5,6 @@ layout: page
 
 <div id="notes"></div>
 
-<style>
-/* Container for each note */
-.note {
-  display: flex;
-  flex-direction: column;
-  margin: 20px 0;
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-}
-.note.single-image {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.note.single-image .note-content {
-  flex: 1; /* text takes remaining space */
-}
-
-.note.single-image .note-images {
-  flex: 0 0 50%;  /* make image take 55% of width */
-  max-width: 700px; 
-  margin-left: 15px;  /* if image on right */
-  margin-right: 0;    /* optional if image on left */
-}
-
-.note.single-image.right .note-images {
-  order: 1; /* image on right */
-}
-
-.note.single-image.left .note-images {
-  order: -1; /* image on left */
-}
-
-.note.single-image .note-images img,
-.note.single-image .note-images video {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.note.multi-image .note-images {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  margin-top: 15px;
-  width: 100%;
-  gap: 10px;
-}
-
-.note.multi-image .note-images img,
-.note.multi-image .note-images video {
-  height: auto;
-  max-height: 400px;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-/* Responsive for small screens */
-@media (max-width: 700px) {
-  /* Single-image notes stacked */
-  .note.single-image {
-    flex-direction: column;
-  }
-
-  .note.single-image .note-images {
-    width: 100%;
-    max-width: 100%;
-    margin-left: 0;
-    margin-top: 10px;
-  }
-
-  .note.single-image.right .note-images,
-  .note.single-image.left .note-images {
-    order: 0;
-  }
-
-  .note.single-image .note-content {
-    flex: none;
-  }
-
-  /* Multi-image notes stacked */
-  .note.multi-image .note-images {
-    flex-direction: column;  /* stack images vertically */
-    gap: 10px;               /* spacing between images */
-  }
-
-  .note.multi-image .note-images img,
-  .note.multi-image .note-images video {
-    width: 100% !important;  /* full width for each media */
-    max-width: 100%;
-    height: auto;
-  }
-}
-</style>
-
 <script>
   const sheetURL = "https://script.google.com/macros/s/AKfycbzJOCaTFbO1itoys61M-vXfPvMhE1IHbydHHQGU4ay_xnywJjhJtzNcHddhN940b2kTRw/exec";
 
@@ -172,5 +75,108 @@ fetch(sheetURL)
     console.error(err);
   });
 </script>
+
+
+<style>
+/* Container for each note */
+.note {
+  margin: 20px 0; /* optional: reduce top/bottom spacing */
+  padding: 15px 15px 10px 15px; /* bottom padding smaller */
+  border-bottom: 2px solid #ddd;
+}
+
+.note-content {
+  margin-bottom: 5px; /* reduce space below text */
+}
+
+.note.single-image {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.note.single-image .note-content {
+  flex: 1; /* text takes remaining space */
+}
+
+.note.single-image .note-images {
+  flex: 0 0 50%;  /* make image take 50% of width */
+  max-width: 700px; 
+  margin-left: 10px;  /* if image on right */
+  margin-right: 0;    /* optional if image on left */
+  margin-top: auto;    /* push to bottom */
+  margin-bottom: 10px; /* leave 20px space from bottom */
+}
+
+.note.single-image.right .note-images {
+  order: 1; /* image on right */
+}
+
+.note.single-image.left .note-images {
+  order: -1; /* image on left */
+}
+
+.note.single-image .note-images img,
+.note.single-image .note-images video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.note.multi-image .note-images {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  width: 100%;
+  gap: 10px;
+}
+
+.note.multi-image .note-images img,
+.note.multi-image .note-images video {
+  height: auto;
+  max-height: 400px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Responsive for small screens */
+@media (max-width: 700px) {
+  /* Single-image notes stacked */
+  .note.single-image {
+    flex-direction: column;
+  }
+
+  .note.single-image .note-images {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .note.single-image.right .note-images,
+  .note.single-image.left .note-images {
+    order: 0;
+  }
+
+  .note.single-image .note-content {
+    flex: none;
+  }
+
+  /* Multi-image notes stacked */
+  .note.multi-image .note-images {
+    flex-direction: column;  /* stack images vertically */
+    gap: 10px;               /* spacing between images */
+  }
+
+  .note.multi-image .note-images img,
+  .note.multi-image .note-images video {
+    width: 100% !important;  /* full width for each media */
+    max-width: 100%;
+    height: auto;
+  }
+}
+</style>
 
 
