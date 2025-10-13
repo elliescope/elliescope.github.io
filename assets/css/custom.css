@@ -14,9 +14,9 @@
   margin-top: -3em; /* adjust to your desired spacing */
 }
 
-@media (max-width: 480px) {
+@media (max-width: 700px) {
   .site-logo img {
-    max-height: 120px;  /* slightly bigger on phones */
+    max-height: 140px;  /* slightly bigger on phones */
   }
 
   .page-content {
