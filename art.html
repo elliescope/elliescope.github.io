@@ -1,0 +1,139 @@
+---
+layout: page
+# title: Art Works
+---
+
+<div id="art-gallery"></div>
+
+<script>
+async function loadArtGallery() {
+  const container = document.getElementById("art-gallery");
+  try {
+    // Replace with your Google Apps Script web app URL that returns JSON
+    const response = await fetch("https://elliescope.github.io/data/arts.json");
+    const artworks = await response.json();
+
+    artworks.forEach((art, index) => {
+      const item = document.createElement("div");
+      item.className = "art-item";
+
+      item.innerHTML = `
+        <img src="${art.image}" alt="${art.title}">
+        <div class="art-info">
+          <h3>${art.title}</h3>
+          <div class="date">${art.date ? art.date.split("T")[0] : ""}</div>
+          <p>${art.content || ""}</p>
+        </div>
+      `;
+      container.appendChild(item);
+    });
+  } catch (err) {
+    console.error("Error loading art gallery:", err);
+    container.innerHTML = "<p>Unable to load art gallery.</p>";
+  }
+}
+
+window.addEventListener("load", loadArtGallery);
+</script>
+
+
+<style>
+#art-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 15px 15px 10px 15px; /* bottom padding smaller */
+}
+
+/* Each row */
+.art-item {
+  display: flex;
+  flex-wrap: wrap;  
+  align-items: stretch;    
+  gap: 25px;
+}
+
+/* Alternate left/right pattern */
+.art-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* Image styling */
+.art-item img {
+  flex: 0 0 60%;
+  max-width: 60%;
+  height: auto;
+  border: 24px solid;       /* subtle, consistent frame on all sides */
+  border-radius: 16px;             /* soft rounded corners */
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* slightly stronger, smoother shadow */
+  object-fit: contain;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* optional hover effect */
+  border-image-source: linear-gradient(to right, #c9c6b2, #faf9f2);
+  border-image-slice: 1;
+}
+
+/* Optional: hover effect for nicer interaction */
+.art-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Text area alignment for odd rows (image left) */
+.art-item:nth-child(odd) .art-info {
+  justify-content: flex-end; /* push content to bottom */
+  align-items: flex-start;   /* left side */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Text area alignment for even rows (image right) */
+.art-item:nth-child(even) .art-info {
+  justify-content: flex-end; /* push content to bottom */
+  align-items: flex-end;     /* right side */
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.art-item .art-info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #222;
+}
+
+.art-item .art-info .date {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.art-item .art-info p {
+  margin: 0;
+  line-height: 1.4;
+  color: #444;
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 700px) {
+  .art-item {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+  }
+
+  .art-item img {
+    max-width: 100%;
+  }
+
+  .art-item .art-info {
+    align-items: center !important;
+    text-align: center !important;
+    padding-top: 8px;
+  }
+}
+</style>

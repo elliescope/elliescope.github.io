@@ -1,0 +1,66 @@
+---
+layout: page
+# title: "Birds Checklist"
+---
+
+<p class="checklist-title">North America Birds</p>
+
+<div class="iframe-container">
+  <iframe
+    id="birdSheet"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?widget=true&headers=false&chrome=false&gridlines=false"
+    allowfullscreen
+    loading="lazy"
+    ></iframe>
+</div>
+
+<script>
+  function adjustIframeHeight() {
+    const iframe = document.getElementById("birdSheet");
+    if (!iframe) return;
+    const w = window.innerWidth;
+
+    // adjust height based on width
+    if (w < 700) {
+      iframe.style.height = "480px";
+    } else if (w < 1000) {
+      iframe.style.height = "600px";
+    } else {
+      iframe.style.height = "650px";
+    }
+
+    // fade in smoothly once height set
+    iframe.style.opacity = 1;
+  }
+
+  // adjust on load and resize
+  window.addEventListener("load", adjustIframeHeight);
+  window.addEventListener("resize", adjustIframeHeight);
+</script>
+
+<style>
+.checklist-title {
+  font-size: 0.95em;
+  font-style: italic;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 0.3em;
+  text-align: left;
+}
+
+iframe {
+  width: 100%;
+  border-radius: 1px;
+  height: 480px;          /* safe default height to avoid flash */
+  opacity: 0;             /* hidden until height set */
+  transition: opacity 0.6s ease, height 0.3s ease;
+}
+
+@media (min-width: 700px) {
+  iframe { height: 600px; }
+}
+
+@media (min-width: 1000px) {
+  iframe { height: 650px; }
+}
+</style>
