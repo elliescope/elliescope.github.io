@@ -18,7 +18,9 @@ layout: page
   function adjustIframeHeight() {
     const iframe = document.getElementById("birdSheet");
     if (!iframe) return;
-    const w = window.innerWidth;
+
+    const scale = window.devicePixelRatio || 1;
+    const w = window.innerWidth / scale;
 
     // adjust height based on width
     if (w < 700) {
