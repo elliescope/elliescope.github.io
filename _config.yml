@@ -18,13 +18,15 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: "EllieScope"
+logo: /assets/images/elliescope-logo.png
+title: "ELLIESCOPE"
 description: "Birding records, photos, nature notes, and art by Ellie"
-url: "https://elliescope.github.io"
-baseurl: "" # the subpath of your site, e.g. /blog
+
+# url: "https://elliescope.github.io"
+# baseurl: "" # the subpath of your site, e.g. /blog
 # twitter_username: jekyllrb
 # github_username:  jekyll
-
+  
 # Build settings
 remote_theme: mmistakes/so-simple-theme
 plugins:

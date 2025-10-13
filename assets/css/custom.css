@@ -1,0 +1,25 @@
+/* Custom tweaks for EllieScope */
+.site-logo img {
+  max-height: 120px;  /* adjust to fit your header */
+  width: auto;
+  border-radius: 10px;
+}
+
+.site-title {
+  display: none; /* hide text title if you want only the logo */
+}
+
+/* Optional: fine-tune layout spacing */
+.page-content {
+  margin-top: -3em; /* adjust to your desired spacing */
+}
+
+@media (max-width: 480px) {
+  .site-logo img {
+    max-height: 120px;  /* slightly bigger on phones */
+  }
+
+  .page-content {
+    margin-top: -1.5em; /* slightly smaller on phones */
+  }
+}
