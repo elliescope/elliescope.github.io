@@ -34,8 +34,26 @@ layout: page
       <a href="/arts">🎨 Art Studio</a>
     </div>
   </div>
-
 </div>
+
+<!-- Visitor counter for EllieScope site -->
+<div style="text-align: center; margin-top: 2em; margin-bottom: 1em; font-size: 0.9em; color: #555;">
+  <span id="visitor-count">Visitors: ...</span>
+</div>
+
+<script>
+  const namespace = "elliescope_github_io";
+  const key = "site_visits";
+
+  fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+    .then(res => res.json())
+    .then(res => {
+      document.getElementById("visitor-count").innerText = `Visitors: ${res.value}`;
+    })
+    .catch(() => {
+      document.getElementById("visitor-count").innerText = "Visitors: unavailable";
+    });
+</script>
 
 <style>
 .welcome-section {
@@ -119,5 +137,10 @@ layout: page
   .welcome-image img {
     max-width: 85%;
   }
+}
+
+#visitor-count {
+  font-size: 0.9em;
+  color: #888;
 }
 </style>
