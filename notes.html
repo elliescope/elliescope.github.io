@@ -54,7 +54,7 @@ fetch(sheetURL)
         <div class="${noteClass}">
           <div class="note-content">
             <h3>${note.title}</h3>
-            <p><em>${note.date ? note.date.split("T")[0] : ""}</em></p>
+            <p class="note-date"><em>${note.date ? note.date.split("T")[0] : ""}</em></p>
             <p>${note.content.replace(/\n/g, "<br>")}</p>
           </div>
           <div class="note-images" ${mediaStyle}>${mediaHTML}</div>
@@ -86,8 +86,16 @@ fetch(sheetURL)
   border-bottom: 2px solid #ddd;
 }
 
+.note-date {
+  font-size: 0.85em;   /* smaller than normal text */
+  font-style: italic;  /* italicized */
+  color: #666;         /* optional softer color */
+  margin-top: -15px;    /* optional to pull closer to title */
+  margin-bottom: 10px;
+}
+
 .note-content {
-  margin-bottom: 5px; /* reduce space below text */
+  margin-bottom: -12px; /* reduce space below text */
 }
 
 .note.single-image {

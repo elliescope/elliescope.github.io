@@ -36,35 +36,6 @@ layout: page
   </div>
 </div>
 
-<!-- Visitor Counter (CounterAPI.dev, updated API) -->
-<div style="text-align:center; margin-top:2em; font-size:0.9em; color:#555;">
-  <span id="visitor-count">Visitors: ...</span>
-</div>
-
-<script>
-(async () => {
-  const API_URL = "https://api.counterapi.dev/v2/elliescope_github_io/site_visits";
-  const API_KEY = "ut_bSXDBWRMi1HYPevbxpkkyJV5aJgOokYfXFnDk9fH";
-
-  try {
-    const res = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${API_KEY}`,
-        "Content-Type": "application/json"
-      }
-    });
-
-    if (!res.ok) throw new Error(await res.text());
-    const data = await res.json();
-    document.getElementById("visitor-count").innerText = `Visitors: ${data.count}`;
-  } catch (err) {
-    console.error("Visitor counter error:", err);
-    document.getElementById("visitor-count").innerText = "Visitors: unavailable";
-  }
-})();
-</script>
-
 <style>
 .welcome-section {
   display: flex;
@@ -119,7 +90,7 @@ layout: page
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to right, #d4f1f1, #6aebeb);
+  background: linear-gradient(to right, #d4f1f1, #26A69A);
   color: #7c2d12;
   font-weight: 600;
   padding: 10px 0;
@@ -149,6 +120,7 @@ layout: page
   }
 }
 
+/* To be used later */
 #visitor-count {
   font-size: 0.9em;
   color: #888;
