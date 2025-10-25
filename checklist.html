@@ -5,7 +5,7 @@ layout: page
 
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
-<p class="checklist-title">Birds of North America</p>
+<p class="checklist-title" id="birdChecklistTitle">Birds of North America</p>
 <div class="iframe-container">
   <iframe
     id="birdSheet"
@@ -41,6 +41,24 @@ layout: page
   window.addEventListener("resize", adjustIframeHeight);
 </script>
 
+<script>
+  async function updateTotalCompleted() {
+    try {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxe4NClXq55jbnJaGiQTo_JZZY2337armVG1s7Jh-AuiKBWur-OjrIKXh41HVep3getbQ/exec");
+      const total = await response.text();
+
+      const title = document.getElementById("birdChecklistTitle");
+      
+      // Use innerHTML and wrap the observed count in a styled span
+      title.innerHTML = `Birds of North America (<span class="highlight-observed">Species I observed: ${total}</span>)`;
+    } catch (error) {
+      console.error("Failed to fetch total completed:", error);
+    }
+  }
+  // Call the function
+  updateTotalCompleted();
+</script>
+
 <style>
 .checklist-title {
   font-size: 0.95em;
@@ -49,6 +67,12 @@ layout: page
   color: #555;
   margin-bottom: 0.3em;
   text-align: left;
+}
+
+.highlight-observed {
+  color: #26A69A;       /* orange color */
+  font-weight: bold;     /* bold text */
+  font-style: italic;    /* italic */
 }
 
 iframe {

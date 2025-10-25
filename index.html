@@ -36,23 +36,33 @@ layout: page
   </div>
 </div>
 
-<!-- Visitor counter for EllieScope site -->
-<div style="text-align: center; margin-top: 2em; margin-bottom: 1em; font-size: 0.9em; color: #555;">
+<!-- Visitor Counter (CounterAPI.dev, updated API) -->
+<div style="text-align:center; margin-top:2em; font-size:0.9em; color:#555;">
   <span id="visitor-count">Visitors: ...</span>
 </div>
 
 <script>
-  const namespace = "elliescope_github_io";
-  const key = "site_visits";
+(async () => {
+  const API_URL = "https://api.counterapi.dev/v2/elliescope_github_io/site_visits";
+  const API_KEY = "ut_bSXDBWRMi1HYPevbxpkkyJV5aJgOokYfXFnDk9fH";
 
-  fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-    .then(res => res.json())
-    .then(res => {
-      document.getElementById("visitor-count").innerText = `Visitors: ${res.value}`;
-    })
-    .catch(() => {
-      document.getElementById("visitor-count").innerText = "Visitors: unavailable";
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${API_KEY}`,
+        "Content-Type": "application/json"
+      }
     });
+
+    if (!res.ok) throw new Error(await res.text());
+    const data = await res.json();
+    document.getElementById("visitor-count").innerText = `Visitors: ${data.count}`;
+  } catch (err) {
+    console.error("Visitor counter error:", err);
+    document.getElementById("visitor-count").innerText = "Visitors: unavailable";
+  }
+})();
 </script>
 
 <style>

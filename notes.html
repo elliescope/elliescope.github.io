@@ -55,7 +55,7 @@ fetch(sheetURL)
           <div class="note-content">
             <h3>${note.title}</h3>
             <p><em>${note.date ? note.date.split("T")[0] : ""}</em></p>
-            <p>${note.content}</p>
+            <p>${note.content.replace(/\n/g, "<br>")}</p>
           </div>
           <div class="note-images" ${mediaStyle}>${mediaHTML}</div>
         </div>
