@@ -6,42 +6,30 @@ layout: page
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
 <p class="checklist-title" id="birdChecklistTitle">Birds of North America</p>
+
+<!-- Custom tabs -->
+<div class="tabs">
+  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1386834576&single=true" class="active">Urban</button>
+  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1969026289&single=true">Raptors</button>
+  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1392521724&single=true">Forest</button>
+  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=58085726&single=true">Warblers</button>
+  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1996768528&single=true">Seabird</button>
+</div>
+
+<!-- iframe container -->
 <div class="iframe-container">
   <iframe
     id="birdSheet"
-    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?widget=true&headers=false&chrome=false&gridlines=false"
-    allowfullscreen
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1386834576&single=true"
     loading="lazy"
-    ></iframe>
+  ></iframe>
 </div>
 
 <script>
-  function adjustIframeHeight() {
-    const iframe = document.getElementById("birdSheet");
-    if (!iframe) return;
+  const iframe = document.getElementById("birdSheet");
+  const overlay = document.getElementById("observedOverlay");
 
-    const scale = window.devicePixelRatio || 1;
-    const w = window.innerWidth / scale;
-
-    // adjust height based on width
-    if (w < 700) {
-      iframe.style.height = "480px";
-    } else if (w < 1000) {
-      iframe.style.height = "600px";
-    } else {
-      iframe.style.height = "650px";
-    }
-
-    // fade in smoothly once height set
-    iframe.style.opacity = 1;
-  }
-
-  // adjust on load and resize
-  window.addEventListener("load", adjustIframeHeight);
-  window.addEventListener("resize", adjustIframeHeight);
-</script>
-
-<script>
+  // Fetch observed count
   async function updateTotalCompleted() {
     try {
       const response = await fetch("https://script.google.com/macros/s/AKfycbxe4NClXq55jbnJaGiQTo_JZZY2337armVG1s7Jh-AuiKBWur-OjrIKXh41HVep3getbQ/exec");
@@ -57,6 +45,43 @@ layout: page
   }
   // Call the function
   updateTotalCompleted();
+
+  // Adjust iframe scale and overlay position
+  function adjustIframe() {
+    const baseWidth = 1000;   
+    const baseLeft = 240;     
+    const baseTop = 0;       
+
+    const w = window.innerWidth;
+    const vh = window.innerHeight;
+    const menuHeight = document.querySelector('.header')?.offsetHeight || 300;
+
+    const scale = Math.min(w / baseWidth, 1);
+    iframe.style.transform = `scale(${scale})`;
+
+    const availableHeight = vh - menuHeight;
+    const scaledHeight = availableHeight / scale;
+    iframe.style.height = scaledHeight + "px";
+    iframe.parentElement.style.height = availableHeight + "px";
+
+    overlay.style.left = `${baseLeft * scale}px`;
+    overlay.style.top = `${baseTop * scale}px`;
+  }
+
+  window.addEventListener("load", adjustIframe);
+  window.addEventListener("resize", adjustIframe);
+
+  // Tab switching
+  document.querySelectorAll('.tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active class from all buttons
+      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Change iframe src to selected sheet URL
+      iframe.src = btn.dataset.sheet;
+    });
+  });
 </script>
 
 <style>
@@ -75,19 +100,53 @@ layout: page
   font-style: italic;    /* italic */
 }
 
-iframe {
+/* Tabs styling */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+  flex-wrap: wrap; /* wrap on narrow screens */
+}
+
+/* Tab buttons */
+.tabs button {
+  padding: 4px 10px;
+  font-size: 0.85em;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.tabs button:hover {
+  background-color: #e0f2f1;
+  border-color: #26A69A;
+  color: #26A69A;
+}
+
+/* Active tab */
+.tabs button.active {
+  background-color: #26A69A;  /* green highlight */
+  color: #fff;                /* white text */
+  border-color: #26A69A;      /* match background */
+  font-weight: bold;
+}
+
+/* iframe container */
+.iframe-container {
+  position: relative;
   width: 100%;
-  border-radius: 1px;
-  height: 480px;          /* safe default height to avoid flash */
-  opacity: 0;             /* hidden until height set */
-  transition: opacity 0.6s ease, height 0.3s ease;
+  overflow: hidden;
 }
 
-@media (min-width: 700px) {
-  iframe { height: 600px; }
+.iframe-container iframe {
+  width: 1000px;
+  height: 650px;
+  border: none;
+  transform-origin: top left;
+  margin-top: -30px; /* move iframe up to hide title row */
 }
 
-@media (min-width: 1000px) {
-  iframe { height: 650px; }
-}
 </style>
