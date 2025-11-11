@@ -9,11 +9,10 @@ layout: page
 
 <!-- Custom tabs -->
 <div class="tabs">
-  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1386834576&single=true" class="active">Urban</button>
-  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1969026289&single=true">Raptors</button>
+  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1386834576&single=true" class="active">Urban & Wetland</button>
   <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1392521724&single=true">Forest</button>
-  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=58085726&single=true">Warblers</button>
-  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1996768528&single=true">Seabird</button>
+  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1996768528&single=true">Sea & Shore</button>
+  <button data-sheet="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1969026289&single=true">Raptors</button>
 </div>
 
 <!-- iframe container -->
@@ -27,7 +26,6 @@ layout: page
 
 <script>
   const iframe = document.getElementById("birdSheet");
-  const overlay = document.getElementById("observedOverlay");
 
   // Fetch observed count
   async function updateTotalCompleted() {
@@ -48,24 +46,23 @@ layout: page
 
   // Adjust iframe scale and overlay position
   function adjustIframe() {
-    const baseWidth = 1000;   
-    const baseLeft = 240;     
-    const baseTop = 0;       
+    const baseWidth = 1100;   
+    const baseTopMargin = 30; // desktop margin-top to hide title row
 
     const w = window.innerWidth;
     const vh = window.innerHeight;
-    const menuHeight = document.querySelector('.header')?.offsetHeight || 300;
+    const menuHeight = document.querySelector('.header')?.offsetHeight || 325; //manu and tab height
 
     const scale = Math.min(w / baseWidth, 1);
     iframe.style.transform = `scale(${scale})`;
+
+    // proportional negative margin to hide the sheet title row
+    iframe.style.marginTop = `${-baseTopMargin * scale}px`;
 
     const availableHeight = vh - menuHeight;
     const scaledHeight = availableHeight / scale;
     iframe.style.height = scaledHeight + "px";
     iframe.parentElement.style.height = availableHeight + "px";
-
-    overlay.style.left = `${baseLeft * scale}px`;
-    overlay.style.top = `${baseTop * scale}px`;
   }
 
   window.addEventListener("load", adjustIframe);
@@ -105,7 +102,13 @@ layout: page
   display: flex;
   gap: 4px;
   margin-bottom: 8px;
-  flex-wrap: wrap; /* wrap on narrow screens */
+  flex-wrap: nowrap;      /* keep in one line */
+  overflow-x: auto;  /* allow horizontal scroll if too narrow */
+}
+
+.tabs > * {
+  flex-shrink: 1;    /* allow items to squeeze */
+  min-width: 0;      /* enable shrinking below intrinsic width */
 }
 
 /* Tab buttons */
@@ -146,7 +149,6 @@ layout: page
   height: 650px;
   border: none;
   transform-origin: top left;
-  margin-top: -30px; /* move iframe up to hide title row */
 }
 
 </style>
