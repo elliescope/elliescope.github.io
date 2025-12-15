@@ -39,6 +39,7 @@ window.addEventListener("load", loadArtGallery);
 
 
 <style>
+/* gallery container */
 #art-gallery {
   display: flex;
   flex-direction: column;
@@ -48,56 +49,60 @@ window.addEventListener("load", loadArtGallery);
   padding: 15px 15px 10px 15px; /* bottom padding smaller */
 }
 
-/* Each row */
+/* each art item row */
 .art-item {
   display: flex;
-  flex-wrap: wrap;  
-  align-items: stretch;    
+  flex-wrap: wrap;
+  align-items: stretch;
   gap: 25px;
 }
 
-/* Alternate left/right pattern */
+/* alternate left/right pattern */
 .art-item:nth-child(even) {
   flex-direction: row-reverse;
 }
 
-/* Image styling */
+/* image styling */
 .art-item img {
   flex: 0 0 60%;
   max-width: 60%;
   height: auto;
-  border: 24px solid;       /* subtle, consistent frame on all sides */
-  border-radius: 16px;             /* soft rounded corners */
+  border: 24px solid;
+  border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* slightly stronger, smoother shadow */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   object-fit: contain;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* optional hover effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-image-source: linear-gradient(to right, #c9c6b2, #faf9f2);
   border-image-slice: 1;
+
+  /* fix width calculation */
+  box-sizing: border-box;
 }
 
-/* Optional: hover effect for nicer interaction */
+/* hover effect */
 .art-item img:hover {
   transform: scale(1.03);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 }
 
-/* Text area alignment for odd rows (image left) */
+/* text area styling */
+.art-item .art-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* odd/even text alignment */
 .art-item:nth-child(odd) .art-info {
-  justify-content: flex-end; /* push content to bottom */
-  align-items: flex-start;   /* left side */
+  justify-content: flex-end;
+  align-items: flex-start;
   text-align: left;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Text area alignment for even rows (image right) */
 .art-item:nth-child(even) .art-info {
-  justify-content: flex-end; /* push content to bottom */
-  align-items: flex-end;     /* right side */
+  justify-content: flex-end;
+  align-items: flex-end;
   text-align: right;
-  display: flex;
-  flex-direction: column;
 }
 
 .art-item .art-info h3 {
@@ -120,7 +125,7 @@ window.addEventListener("load", loadArtGallery);
   color: #444;
 }
 
-/* Mobile: stack vertically */
+/* Mobile / small screen */
 @media (max-width: 700px) {
   .art-item {
     flex-direction: column !important;
@@ -129,7 +134,11 @@ window.addEventListener("load", loadArtGallery);
   }
 
   .art-item img {
+    flex: 0 0 auto;
+    width: 100%;
     max-width: 100%;
+    border-width: 12px;
+    padding: 10px;
   }
 
   .art-item .art-info {
