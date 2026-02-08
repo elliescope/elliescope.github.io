@@ -50,8 +50,10 @@ layout: page
     const baseTopMargin = 30; // desktop margin-top to hide title row
 
     const w = window.innerWidth;
-    const vh = window.innerHeight;
-    const menuHeight = document.querySelector('.header')?.offsetHeight || 325; //manu and tab height
+    const vh = window.visualViewport?.height || window.innerHeight;
+
+    const header = document.querySelector('.header');
+    const menuHeight = header ? header.offsetHeight : 120;
 
     const scale = Math.min(w / baseWidth, 1);
     iframe.style.transform = `scale(${scale})`;
@@ -61,8 +63,10 @@ layout: page
 
     const availableHeight = vh - menuHeight;
     const scaledHeight = availableHeight / scale;
-    iframe.style.height = scaledHeight + "px";
-    iframe.parentElement.style.height = availableHeight + "px";
+
+    const minHeight = 520; // key fix
+    iframe.style.height = Math.max(scaledHeight, minHeight) + "px";
+    iframe.parentElement.style.height = Math.max(availableHeight, minHeight) + "px";
   }
 
   window.addEventListener("load", adjustIframe);

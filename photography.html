@@ -5,11 +5,23 @@ layout: page
 
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
+<p class="title">Year 2026</p>
+
+<div class="iframe-container">
+    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSekrN2RINE-0-MYvlSt1mxbFVL-m9xqcFHr7_O_mjMBur45NbZIdr_9Vk5cR8XvdG8s1Xq-YqNkkxg/pubembed?start=true&loop=true&delayms=3000" 
+    id="photoSheet2026"
+    allowfullscreen
+    loading="lazy"
+    ></iframe>
+</div>
+
+<hr class="year-divider">
+
 <p class="title">Year 2025</p>
 
 <div class="iframe-container">
     <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSXwa5hVFVdifvMTHWTXyS55jYzuFU3VJBsI3ITM8IbCjYwRdpHRZnj77VXh1QEGcVYR1di1dsGIWW1/pubembed?start=true&loop=true&delayms=3000" 
-    id="photoSheet"
+    id="photoSheet2025"
     allowfullscreen
     loading="lazy"
     ></iframe>
@@ -17,31 +29,37 @@ layout: page
 
 <script>
   function adjustIframeHeight() {
-    const iframe = document.getElementById("photoSheet");
-    if (!iframe) return;
+    const iframes = document.querySelectorAll(".iframe-container iframe");
 
     const scale = window.devicePixelRatio || 1;
     const w = window.innerWidth / scale;
 
-    // adjust height based on width
+    let height;
     if (w < 700) {
-      iframe.style.height = "480px";
+      height = "480px";
     } else if (w < 1000) {
-      iframe.style.height = "600px";
+      height = "600px";
     } else {
-      iframe.style.height = "650px";
+      height = "650px";
     }
 
-    // fade in smoothly once height set
-    iframe.style.opacity = 1;
+    iframes.forEach(iframe => {
+      iframe.style.height = height;
+      iframe.style.opacity = 1;
+    });
   }
 
-  // adjust on load and resize
   window.addEventListener("load", adjustIframeHeight);
   window.addEventListener("resize", adjustIframeHeight);
 </script>
 
 <style>
+.year-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2.5rem 0 1.2rem;
+}
+
 .title {
   font-size: 0.95em;
   font-style: italic;
