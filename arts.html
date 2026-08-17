@@ -3,7 +3,7 @@ layout: page
 description: "Original artwork and illustrations by Ellie — inspired by birds, nature, and the world around her."
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <div id="art-gallery"></div>
-<script src="{{ '/assets/js/arts.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/arts.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

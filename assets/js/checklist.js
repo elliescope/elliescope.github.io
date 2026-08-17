@@ -4,7 +4,7 @@ const REGIONS = {
     countScript: "https://script.google.com/macros/s/AKfycbxe4NClXq55jbnJaGiQTo_JZZY2337armVG1s7Jh-AuiKBWur-OjrIKXh41HVep3getbQ/exec",
     tabs: [
       {
-        label: "Urban & Wetland",
+        label: "Wetland",
         sheet: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1386834576&single=true"
       },
       {
@@ -12,11 +12,11 @@ const REGIONS = {
         sheet: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1392521724&single=true"
       },
       {
-        label: "Sea & Shore",
+        label: "Sea&Shore",
         sheet: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1996768528&single=true"
       },
       {
-        label: "Raptors",
+        label: "Raptor",
         sheet: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIJ0x6PAfm2a2jW7dxYmhHGNbsbMCOvfYoL1HLh9qVSxD9nZfRUDUcLfjo8gFHq37NM6Ad52r2VL35/pubhtml?gid=1969026289&single=true"
       }
     ]
@@ -108,9 +108,8 @@ function adjustIframe() {
   const availableHeight = vh - menuHeight;
   const minHeight = 520;
 
-  const baseWidth = 1100;
   const baseTopMargin = 30;
-  const scale = Math.min(w / baseWidth, 1);
+  const scale = Math.min(container.clientWidth / 984, 1);
 
   iframe.style.transform = `scale(${scale})`;
   iframe.style.marginTop = `${-baseTopMargin * scale}px`;
@@ -126,4 +125,8 @@ setTitle(REGIONS[activeRegion]);
 updateTotalCompleted();
 
 window.addEventListener("load", adjustIframe);
-window.addEventListener("resize", adjustIframe);
+window.addEventListener("resize", () => requestAnimationFrame(adjustIframe));
+window.addEventListener("orientationchange", () => requestAnimationFrame(adjustIframe));
+if (window.ResizeObserver) {
+  new ResizeObserver(adjustIframe).observe(container);
+}

@@ -3,7 +3,7 @@ layout: page
 description: "Ellie's birding checklist — species observed across urban, wetland, forest, shore, and raptor habitats in North America and China."
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <p class="checklist-title" id="birdChecklistTitle">Birds of North America</p>
 
@@ -22,4 +22,4 @@ description: "Ellie's birding checklist — species observed across urban, wetla
   ></iframe>
 </div>
 
-<script src="{{ '/assets/js/checklist.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/checklist.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

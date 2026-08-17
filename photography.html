@@ -3,7 +3,7 @@ layout: page
 description: "Nature photography by Ellie — bird and wildlife photos from Texas and beyond."
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <p class="title">Year 2026</p>
 
@@ -13,6 +13,7 @@ description: "Nature photography by Ellie — bird and wildlife photos from Texa
     allowfullscreen
     loading="lazy"
     ></iframe>
+    <div class="embed-guard" aria-hidden="true"></div>
 </div>
 
 <hr class="year-divider">
@@ -25,4 +26,5 @@ description: "Nature photography by Ellie — bird and wildlife photos from Texa
     allowfullscreen
     loading="lazy"
     ></iframe>
+    <div class="embed-guard" aria-hidden="true"></div>
 </div>

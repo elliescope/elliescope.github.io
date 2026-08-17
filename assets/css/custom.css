@@ -81,6 +81,8 @@
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  white-space: nowrap;
+  line-height: 1.2;
   padding: 10px 0;
   border: 1px solid #34374C;
   border-radius: 0.25rem;
@@ -103,6 +105,17 @@
   }
   .welcome-image img {
     max-width: 85%;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-links {
+    gap: 8px 12px;
+  }
+  .explore-links a {
+    font-size: 0.75em;
+    letter-spacing: 0.015em;
+    padding: 7px 0;
   }
 }
 
@@ -184,9 +197,10 @@
 .tabs {
   display: flex;
   gap: 4px;
+  row-gap: 4px;
   margin-bottom: 8px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  overflow: visible;
 }
 
 .tabs > * {
@@ -195,11 +209,13 @@
 }
 
 .tabs button {
-  padding: 3px 8px;
-  font-size: 0.72em;
+  padding: 3px 6px;
+  font-size: 0.68em;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
   border: 1px solid #34374C;
   background-color: #fff;
   color: #34374C;
@@ -448,7 +464,7 @@
 .photo-embed {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 2;
 }
 
 .photo-embed iframe {
@@ -458,6 +474,15 @@
   width: 100%;
   height: 100%;
   border: none;
+}
+
+.photo-embed .embed-guard {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 135px;
+  height: 32px;
+  z-index: 2;
 }
 
 /* ===== 404 page ===== */

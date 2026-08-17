@@ -3,7 +3,7 @@ layout: page
 description: "Nature observation notes by Ellie — stories and discoveries from birdwatching and exploring the outdoors in Texas."
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
 <div id="notes"></div>
-<script src="{{ '/assets/js/notes.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/notes.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
