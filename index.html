@@ -1,17 +1,15 @@
 ---
 layout: page
-# title: Welcome
+description: "Birding records, photos, nature notes, and art by Ellie — a young nature observer in Texas."
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
 <div class="welcome-section">
-  <!-- Left: Ellie's photo -->
   <div class="welcome-image">
     <img src="/assets/images/ellie-profile.jpg" alt="Ellie smiling with her camera">
   </div>
 
-  <!-- Right: Intro text -->
   <div class="welcome-text">
     <h3>Hi, I'm Ellie! 🦜</h3>
     <p>
@@ -27,7 +25,7 @@ layout: page
       This is my little corner of the world — where I keep learning about nature, one bird and one adventure at a time.🌿
     </p>
     <p style="display: flex; justify-content: space-between; align-items: center;">
-      <span></span> <!-- empty left side -->
+      <span></span>
       <span>(May 2025)</span>
     </p>
 
@@ -39,94 +37,3 @@ layout: page
     </div>
   </div>
 </div>
-
-<style>
-.welcome-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 40px;
-  padding: 15px;
-}
-
-/* Left image column */
-.welcome-image {
-  flex: 0 0 40%;
-  display: flex;
-  justify-content: center;
-}
-.welcome-image img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  object-fit: cover;
-}
-
-/* Right text column */
-.welcome-text {
-  flex: 0 0 55%;
-  max-width: 600px;
-}
-.welcome-text h2 {
-  font-size: 1.8em;
-  margin-bottom: 10px;
-  color: #444;
-}
-.welcome-text p {
-  line-height: 1.6;
-  margin-bottom: 12px;
-  color: #555;
-}
-
-/* Explore links styling */
-.explore-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
-  gap: 8px 24px; /* 8px row-gap (vertical), 24px column-gap (horizontal) */
-  max-width: 400px;
-  margin: 1.5em auto 0 auto; /* center the grid horizontally */
-  justify-content: center;    /* ensure content is centered */
-}
-
-.explore-links a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(to right, #d4f1f1, #26A69A);
-  color: #7c2d12;
-  font-weight: 600;
-  padding: 10px 0;
-  border-radius: 12px;
-  text-decoration: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.25s ease;
-  width: 100%;               /* fill the grid cell */
-}
-
-.explore-links a:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(to right, #ccf6f6, #14baba);
-}
-
-/* Responsive layout for phones */
-@media (max-width: 700px) {
-  .welcome-section {
-    flex-direction: column;
-  }
-  .welcome-image, .welcome-text {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-  .welcome-image img {
-    max-width: 85%;
-  }
-}
-
-/* To be used later */
-#visitor-count {
-  font-size: 0.9em;
-  color: #888;
-}
-</style>

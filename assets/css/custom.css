@@ -1,25 +1,475 @@
-/* Custom tweaks for EllieScope */
+/* ===== Site-wide (theme overrides) ===== */
 .site-logo img {
-  max-height: 120px;  /* adjust to fit your header */
+  max-height: 120px;
   width: auto;
   border-radius: 10px;
 }
 
 .site-title {
-  display: none; /* hide text title if you want only the logo */
+  display: none;
 }
 
-/* Optional: fine-tune layout spacing */
 .page-content {
-  margin-top: -3em; /* adjust to your desired spacing */
+  margin-top: -3em;
 }
 
 @media (max-width: 700px) {
   .site-logo img {
-    max-height: 160px;  /* slightly bigger on phones */
+    max-height: 160px;
   }
-
   .page-content {
-    margin-top: -1.5em; /* slightly smaller on phones */
+    margin-top: -1.5em;
   }
+}
+
+/* ===== Homepage — Welcome section ===== */
+.welcome-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 15px;
+}
+
+.welcome-image {
+  flex: 0 0 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  object-fit: cover;
+}
+
+.welcome-text {
+  flex: 0 0 55%;
+  max-width: 600px;
+}
+
+.welcome-text h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.welcome-text p {
+  line-height: 1.6;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.explore-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 24px;
+  max-width: 400px;
+  margin: 1.5em auto 0 auto;
+  justify-content: center;
+}
+
+.explore-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #34374C;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 10px 0;
+  border: 1px solid #34374C;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  width: 100%;
+}
+
+.explore-links a:hover {
+  background: #eef0f4;
+}
+
+@media (max-width: 700px) {
+  .welcome-section {
+    flex-direction: column;
+  }
+  .welcome-image, .welcome-text {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .welcome-image img {
+    max-width: 85%;
+  }
+}
+
+#visitor-count {
+  font-size: 0.9em;
+  color: #888;
+}
+
+/* ===== Checklist page ===== */
+.region-tabs {
+  display: flex;
+  margin-bottom: 12px;
+  max-width: 480px;
+}
+
+.region-tabs button {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 0.72em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: 1px solid #34374C;
+  background-color: #fff;
+  color: #34374C;
+  border-radius: 0;
+  margin-left: -1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.region-tabs button:first-child {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  margin-left: 0;
+}
+
+.region-tabs button:last-child {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.region-tabs button:hover {
+  background-color: #eef0f4;
+}
+
+.region-tabs button.active {
+  background-color: #34374C;
+  color: #fff;
+}
+
+.checklist-title {
+  font-size: 0.95em;
+  font-style: italic;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 0.3em;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 700px) {
+  .checklist-title {
+    font-size: 0.95em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.highlight-observed {
+  color: #34374C;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.tabs > * {
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.tabs button {
+  padding: 3px 8px;
+  font-size: 0.72em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: 1px solid #34374C;
+  background-color: #fff;
+  color: #34374C;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabs button:hover {
+  background-color: #eef0f4;
+}
+
+.tabs button.active {
+  background-color: #34374C;
+  color: #fff;
+  font-weight: bold;
+}
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+  width: 1000px;
+  height: 650px;
+  border: none;
+  transform-origin: top left;
+}
+
+/* ===== Notes page ===== */
+.note {
+  margin: 20px 0;
+  padding: 15px 15px 10px 15px;
+  border-bottom: 2px solid #ddd;
+}
+
+.note-date {
+  font-size: 0.85em;
+  font-style: italic;
+  color: #666;
+  margin-top: -15px;
+  margin-bottom: 10px;
+}
+
+.note-content {
+  margin-bottom: -12px;
+}
+
+.note.single-image {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.note.single-image .note-content {
+  flex: 1;
+}
+
+.note.single-image .note-images {
+  flex: 0 0 50%;
+  max-width: 700px;
+  margin-left: 10px;
+  margin-right: 0;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.note.single-image.right .note-images {
+  order: 1;
+}
+
+.note.single-image.left .note-images {
+  order: -1;
+}
+
+.note.single-image .note-images img,
+.note.single-image .note-images video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.note.multi-image .note-images {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  width: 100%;
+  gap: 10px;
+}
+
+.note.multi-image .note-images img,
+.note.multi-image .note-images video {
+  height: auto;
+  max-height: 400px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+@media (max-width: 700px) {
+  .note.single-image {
+    flex-direction: column;
+  }
+  .note.single-image .note-images {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .note.single-image.right .note-images,
+  .note.single-image.left .note-images {
+    order: 0;
+  }
+  .note.single-image .note-content {
+    flex: none;
+  }
+  .note.multi-image .note-images {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .note.multi-image .note-images img,
+  .note.multi-image .note-images video {
+    width: 100% !important;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ===== Art gallery page ===== */
+#art-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 15px 15px 10px 15px;
+}
+
+.art-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 25px;
+}
+
+.art-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.art-item img {
+  flex: 0 0 60%;
+  max-width: 60%;
+  height: auto;
+  border: 24px solid;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  object-fit: contain;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-image-source: linear-gradient(to right, #c9c6b2, #faf9f2);
+  border-image-slice: 1;
+  box-sizing: border-box;
+}
+
+.art-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+.art-item .art-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.art-item:nth-child(odd) .art-info {
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.art-item:nth-child(even) .art-info {
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.art-item .art-info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #222;
+}
+
+.art-item .art-info .date {
+  font-size: 0.85rem;
+  color: #777;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+.art-item .art-info p {
+  margin: 0;
+  line-height: 1.4;
+  color: #444;
+}
+
+@media (max-width: 700px) {
+  .art-item {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+  }
+  .art-item img {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    border-width: 12px;
+    padding: 10px;
+  }
+  .art-item .art-info {
+    align-items: center !important;
+    text-align: center !important;
+    padding-top: 8px;
+  }
+}
+
+/* ===== Photography page ===== */
+.year-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2.5rem 0 1.2rem;
+}
+
+.title {
+  font-size: 0.95em;
+  font-style: italic;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 0.3em;
+  text-align: left;
+}
+
+.photo-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.photo-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ===== 404 page ===== */
+.container-404 {
+  margin: 10px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.container-404 h1 {
+  margin: 30px 0;
+  font-size: 4em;
+  line-height: 1;
+  letter-spacing: -1px;
 }

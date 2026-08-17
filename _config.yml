@@ -29,13 +29,12 @@ description: "Birding records, photos, nature notes, and art by Ellie"
   
 # Build settings
 remote_theme: mmistakes/so-simple-theme
-plugins:
-  - jekyll-remote-theme
 
 # Permalinks for blog posts (your Nature Notes)
 permalink: /:categories/:year/:month/:day/:title/
 
 # Plugins (safe for GitHub Pages)
 plugins:
+  - jekyll-remote-theme
   - jekyll-feed
   - jekyll-seo-tag
