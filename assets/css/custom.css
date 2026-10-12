@@ -119,9 +119,16 @@
   }
 }
 
-#visitor-count {
+.visitor-counter {
+  text-align: center;
+  margin: 1.5em 0;
   font-size: 0.9em;
   color: #888;
+}
+
+#visitor-count {
+  font-weight: 600;
+  color: #26A69A;
 }
 
 /* ===== Checklist page ===== */

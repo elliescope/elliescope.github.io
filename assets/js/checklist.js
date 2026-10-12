@@ -23,7 +23,7 @@ const REGIONS = {
   },
   "china": {
     title: "Birds of China",
-    countScript: null,
+    countScript: "https://script.google.com/macros/s/AKfycbzMQZggcdLXMqIKzig7M0X-mfliHuEm0_K3_0F5f56iCOoSIAZGGseNyqY1RIvzeJE/exec",
     tabs: [
       {
         label: "2026 Trip",

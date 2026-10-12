@@ -1,1 +1,12 @@
 <meta name="referrer" content="no-referrer">
+
+{% if site.visit_counter_url and site.visit_counter_url != "" %}
+<!-- Visitor counter: record one page view on every page (fire-and-forget beacon) -->
+<script>
+  (function () {
+    var url = {{ site.visit_counter_url | jsonify }};
+    var separator = url.indexOf("?") > -1 ? "&" : "?";
+    new Image().src = url + separator + "t=" + Date.now();
+  })();
+</script>
+{% endif %}

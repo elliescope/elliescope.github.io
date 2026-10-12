@@ -22,6 +22,10 @@ logo: /assets/images/elliescope-logo.png
 title: "ELLIESCOPE"
 description: "Birding records, photos, nature notes, and art by Ellie"
 
+# Visitor counter: paste the Google Apps Script web-app "/exec" URL here.
+# Leave empty ("") to disable the counter. See README for setup steps.
+visit_counter_url: "https://script.google.com/macros/s/AKfycbxifW7ameI8yeIO7dM2ZC-el9xGFXac-JlwU-_mhtKnwsl9KUTBPhWkuTyAKxaNJl8U/exec"
+
 # url: "https://elliescope.github.io"
 # baseurl: "" # the subpath of your site, e.g. /blog
 # twitter_username: jekyllrb
